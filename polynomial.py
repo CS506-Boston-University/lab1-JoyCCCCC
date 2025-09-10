@@ -50,16 +50,24 @@ class Add:
 
         if isinstance(s1, Int) and isinstance(s2, Int):
             return Int(s1.i + s2.i)
-        
+
         if isinstance(s1, X) and isinstance(s2, X):
             return Mul(Int(2), X())
 
         if isinstance(s1, Mul) and isinstance(s2, Mul):
-            if isinstance(s1.p1, Int) and isinstance(s1.p2, X) and \
-               isinstance(s2.p1, Int) and isinstance(s2.p2, X):
+            if (
+                isinstance(s1.p1, Int)
+                and isinstance(s1.p2, X)
+                and isinstance(s2.p1, Int)
+                and isinstance(s2.p2, X)
+            ):
                 return Mul(Int(s1.p1.i + s2.p1.i), X())
-            if isinstance(s1.p2, Int) and isinstance(s1.p1, X) and \
-               isinstance(s2.p2, Int) and isinstance(s2.p1, X):
+            if (
+                isinstance(s1.p2, Int)
+                and isinstance(s1.p1, X)
+                and isinstance(s2.p2, Int)
+                and isinstance(s2.p1, X)
+            ):
                 return Mul(Int(s1.p2.i + s2.p2.i), X())
 
         if isinstance(s1, X) and isinstance(s2, Mul):
